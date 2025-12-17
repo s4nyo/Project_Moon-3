@@ -4,7 +4,7 @@ from scipy import integrate, constants
 import pandas as pd
 import os
 
-file_path = os.path.join(os.getcwd(), 'ksp_res.xlsx')
+file_path = os.path.join(os.getcwd(), 'ksp_res3.xlsx')
 df = pd.read_excel(file_path)
 # Получаем данные из файла
 time_ksp = df['time'].values
@@ -51,22 +51,18 @@ def dv_dt_with_gravity_loss(t, v):
         Ft = F[0]
         k = (M - m0) / 88
         current_mass = M - k * t
-        return ((Ft / current_mass) -
-                ((Cf * ro * S) / (2 * current_mass)) * v ** 2 -
-                gravity_component)
-    elif t < 209:
+        return ((Ft / current_mass) - ((Cf * ro * S) / (2 * current_mass)) * v ** 2 - gravity_component)
+    elif t < 190:
         M = 67600
         m0 = 27700
         Ft = F[1]
         k = (M - m0) / 146
         t_local = t - 88
         current_mass = M - k * t_local
-        return ((Ft / current_mass) -
-                ((Cf * ro * S) / (2 * current_mass)) * v ** 2 -
-                gravity_component)
+        return ((Ft / current_mass) - ((Cf * ro * S) / (2 * current_mass)) * v ** 2 - gravity_component)
 
 v0 = 0
-t_model = np.linspace(0, 210, 245)  # Увеличиваем количество точек для точности
+t_model = np.linspace(0, 210, 245)
 
 solve_with_gravity = integrate.solve_ivp(
     dv_dt_with_gravity_loss,

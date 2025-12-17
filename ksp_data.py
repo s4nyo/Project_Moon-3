@@ -23,13 +23,13 @@ while True:
 
     # Проверка условия завершения сбора данных
     altitude = vessel.flight().surface_altitude
-    if altitude > 120000:
+    if altitude > 100000:
         break
     sleep(0.1)
 
 
 df = pd.DataFrame({"speed": speed_values, "time": time_values})
-df.to_excel('ksp_res.xlsx')
+df.to_excel('ksp_res3.xlsx')
 # Построение графика скорости от времени
 plt.plot(time_values, speed_values)
 plt.title('Зависимость скорости от времени')
