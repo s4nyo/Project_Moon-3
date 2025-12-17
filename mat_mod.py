@@ -38,25 +38,21 @@ def dv_dt_with_gravity_loss(t, v):
     # γ - угол относительно горизонта, поэтому используем sin
     gravity_component = g * np.sin(gamma_angle(t))
 
-    if t < 88:
-        M = 205900
-        m0 = 109900
-        Ft = F[0]
-        k = (M - m0) / 88
-        current_mass = M - k * t
-        return ((Ft / current_mass) -
-                ((Cf * ro * S) / (2 * current_mass)) * v ** 2 -
-                gravity_component)
-    elif t < 209:
-        M = 67600
-        m0 = 27700
-        Ft = F[1]
-        k = (M - m0) / 146
-        t_local = t - 88
-        current_mass = M - k * t_local
-        return ((Ft / current_mass) -
-                ((Cf * ro * S) / (2 * current_mass)) * v ** 2 -
-                gravity_component)
+        if t < 88:
+            M = 205900
+            m0 = 109900
+            Ft = F[0]
+            k = (M - m0) / 88
+            current_mass = M - k * t
+            return ((Ft / current_mass) - ((Cf * ro * S) / (2 * current_mass)) * v ** 2 - gravity_component)
+        elif t < 190:
+            M = 67600
+            m0 = 27700
+            Ft = F[1]
+            k = (M - m0) / 146
+            t_local = t - 88
+            current_mass = M - k * t_local
+            return ((Ft / current_mass) - ((Cf * ro * S) / (2 * current_mass)) * v ** 2 - gravity_component)
 
 v0 = 0
 t_model = np.linspace(0, 210, 245)  # Увеличиваем количество точек для точности
@@ -81,5 +77,6 @@ plt.legend(fontsize=12)
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.show()
+
 
 
