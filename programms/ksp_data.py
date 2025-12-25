@@ -35,4 +35,5 @@ plt.plot(time_values, speed_values)
 plt.title('Зависимость скорости от времени')
 plt.xlabel('Время, s')
 plt.ylabel('Скорость, m/s')
+
 plt.show()
