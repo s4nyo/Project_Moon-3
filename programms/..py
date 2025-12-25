@@ -104,4 +104,5 @@ plt.xlabel("Время (с)")
 plt.ylabel("Скорость (м/с)")
 plt.grid(True)
 plt.legend()  # Добавляем легенду
+
 plt.show()
